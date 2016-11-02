@@ -1,0 +1,13 @@
+console.log('Executed.js');
+
+// Append new data
+$("<%=j render(:partial => 'thumbnail', :object => @products) %>")
+  .appendTo($(".infinite-table #product-list"));
+
+// Update pagination link
+<% if @products.last_page? %>
+  $('.pagination').html("That's all, folks!");
+<% else %>
+  $('.pagination')
+    .html("<%=j link_to_next_page(@products, 'Next Page', :remote => true) %>");
+<% end %>

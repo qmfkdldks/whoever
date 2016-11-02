@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+
+		    <div id="sidebar-menu" class="col-md-2 col-sm-2 col-xs-12">
+	        	<ul id="main-menu" class="main-menu">
+	        		<% @categories.each do |category| %>
+	        			<%= link_to category.name, '#', class: "category", onclick:"return false;" %>
+	        			<li>
+	        				<ul class="sub-menu">
+	        					<% category.tags.each do |tag|%>
+	             					<li>
+	        							<%= link_to tag.name + " " + tag.products.length.to_s, '#', class: "tag", :data => { :checked => 'false', :tagid => tag.id}, onclick:"return false;"  %>
+	        						</li>   					
+	        					<% end %>
+	        				</ul>
+	        			</li>
+	        		<% end %>
+	        		<li>
+	        			<br />
+	              		<input id="filter_btn" type="button" class="btn btn-default btn-sm"  style="margin: 25px 0px 25px 0px;" value="Filter" />
+	              		<br />		
+						<div id="state_window" class="container" style="width:inherit;"><span></span></div>
+	        		</li>
+		    	</ul>
+		    	<hr />
+		    </div>
+
+	    	<div class="col-md-10 col-sm-10 col-xs-12 infinite-table"">
+	    		<div id="product-list">
+						<%= render partial: 'thumbnail', object: @products %>
+				</div>
+			  	<p class="pagination">
+			    	<%= link_to_next_page(@products, 'Next Page', :remote => true) %>
+			  	</p>
+			</div>
+		</div>
+		
+</div>

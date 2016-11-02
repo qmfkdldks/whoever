@@ -1,0 +1,77 @@
+<%= csrf_meta_tag %>
+<%= javascript_tag "var AUTH_TOKEN = '#{form_authenticity_token}';" if protect_against_forgery? %>
+
+<article style="margin-top: 61px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 ">
+
+
+					<h1><%= @article.title %> </h1>
+					<hr />
+					<p><%= raw @article.text %></p>
+		            <p class="post-meta"> 
+		            	<%= @article.view_number%> views
+		            	Posted by <a href="#"><%= @article.user.email %></a>
+		            	<%= @article.created_at %>
+	            	</p>
+					<hr />
+					<div>		
+
+					<% user_like @article %>
+					<%= link_to like_article_path, id:"like_button", id: "like_button", remote:true, method: :patch do%>
+						<i class="fa fa-thumbs-up <%= @like %>", data-like="<%= @like %>">
+							<%= @article.like_number %>
+						</i>
+					<% end %>			
+						
+						<h2>Add a comment</h2>
+						<%= render partial:'comments/form', locals:{article_id: @article.id, product_detail_id: nil} %>
+						
+						
+						<h2>Comments <span><%= @article.comments.count%></span></h2>
+
+						<% @article.comments.each do |comment| %>
+							<% if !comment.user_id.nil? %>
+							<div>
+								<% user = User.find(comment.user_id) %>
+						    	<h3><%= image_tag user.icon_name, size: "50" %>		<%= comment.commenter %></h3>
+						    	<span><%= comment.body %></span>	    
+							</div>
+							<hr />
+							<% end %>
+						<% end %>
+						
+						<div style="float:right;">
+							<%= link_to 'Back', articles_path, class:"btn btn-primary", style:"display: inline-block;" %>
+						</div>
+					</div>
+					
+           		 </div>
+           		 <div class="sidebar col-lg-4 col-md-2">
+           		 	
+		 				<div class="profile-card">
+		 					
+							<div>
+								<div class="profile-img">
+									 <%= image_tag @article.user.icon_name %>
+								</div>
+								<div class="profile-description">
+									<div class="user-heading">
+										<h3><%= @article.user.name %></h3>
+										<span class="help-block"><%= @article.user.email %></span>
+									</div>
+								</div>
+							</div>
+						</div> 
+						
+           		 </div>
+        	</div>
+    	</div>
+</article>
+
+<script>
+	$('img').each ( function () {
+		$(this).addClass('img-responsive');
+	})
+</script>

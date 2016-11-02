@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dnaexfddx
+  api_key: '782944759844915'
+  api_secret: Rj6mcZ7sTfKkEuLwzbbmtKjawO4
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dnaexfddx
+  api_key: '782944759844915'
+  api_secret: Rj6mcZ7sTfKkEuLwzbbmtKjawO4
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dnaexfddx
+  api_key: '782944759844915'
+  api_secret: Rj6mcZ7sTfKkEuLwzbbmtKjawO4
+  enhance_image_tag: true
+  static_image_support: false

@@ -1,0 +1,126 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 14px;
+
+	p.tag {
+		border-radius: 3px;
+		color: white;
+		background-color: #ed7999;
+		display: inline-block;
+		padding: 3px;
+	    margin: 1px 0px;
+	}
+}
+
+p {
+  margin: 0px 0px;
+}
+
+
+/* SCROLL BAR */
+::-webkit-scrollbar-track {
+  /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+  border-radius: 10px;
+  /*background-color: #F5F5F5;*/
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+
+/* QUANTITY INPUT */
+button.qty-change{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #e3e3e3;
+}
+
+.qty-input{
+    height: 30px;
+    width: 80px;
+    text-align: center;
+}
+
+input[type="number"] {
+    position: relative;
+    margin: 0 0 1rem;
+    padding: .2rem;
+    border: 0px transparent;
+    text-align: center;
+}
+
+/* Spin Buttons modified */
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+#main-menu {
+  padding: 0;
+  position:fixed;
+  width:inherit;
+	li{
+		list-style-type: none;
+	}
+}
+
+/* PRODUCT INFO AND SELECTABLE INPUTS */
+#product-form {
+  position: fixed;
+  width: inherit;
+  padding: 0px 30px;
+}
+
+#product-form div.pre-scrollable {
+  padding: 30px;
+  overflow-x: hidden;
+  max-height: 80vh;
+}
+
+@media only screen and (max-width: 768px)
+{
+  #main-menu {
+      text-align: center;
+      position:relative;
+  } 
+  #product-form {
+    position: relative;
+    padding: 0px 0px;
+  }
+}
+
+#sidebar-menu {
+  a {
+    //display: block;
+    color: #999;
+    padding-left: 2px;
+  }
+  
+  a.category {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+   a.tag-checked {
+    color: #449293;
+    background-color: #e1f2ea;
+	font-weight: 600;
+  }
+
+}

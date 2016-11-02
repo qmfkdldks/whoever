@@ -1,0 +1,10 @@
+<% provide(:header_image, '/assets/img/home-bg.jpg')%>
+
+<%= render 'layouts/header'%>
+
+<div class="container">
+	<h1>Home#index</h1>
+	<p>Find me in app/views/home/index.html.erb</p>
+	<%= link_to 'Login',  new_user_session_path, class:"btn btn-default" %>
+	<%= link_to 'My Blog',  articles_path, class:"btn btn-default" %>	
+</div>

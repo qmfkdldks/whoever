@@ -1,0 +1,55 @@
+<% provide(:header_image, '/assets/img/fashion-mall.jpeg')%>
+<%= render 'layouts/header'%>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+			<!--
+			<% @articles.each do |article| %>
+				<tr>
+					<td><%= article.title%></td>
+					<td><%= article.text%></td>
+					<td><%= link_to 'Show', article_path(article)%></td>
+					<td><%= link_to 'Edit', edit_article_path(article)%></td>
+					      <td><%= link_to 'Destroy', article_path(article),
+		              method: :delete,
+		              data: { confirm: 'Are you sure?' } %></td>
+				</tr>
+			<% end %>
+			-->
+
+
+			<% @articles.each do |article| %>
+		        <div class="post-preview">
+		        	
+		        	<%= link_to article_path(article) do %>
+		            	
+		                <h2 class="post-title">
+		                    <%= article.title %>
+		                </h2>
+		            <% end %>
+		            
+		            <p class="post-meta"> 
+		            	<%= article.view_number%> views
+		            	Posted by <a href="#"><%= article.user.email %></a>
+		            	<%= article.created_at %>
+		            	<% user_like article %>
+	            	 	<i class="fa fa-thumbs-up <%= @like%>" style="float:right;">
+            	 			<%= article.like_number %>
+            	 		</i>
+	            	</p>
+		            
+		        </div>
+		        <!--
+		        <%= link_to 'Edit', edit_article_path(article)%>
+		        <%= link_to 'Destroy', article_path(article),
+				              method: :delete,
+				              data: { confirm: 'Are you sure?' } %>
+              	-->
+		        <hr>
+			<% end %>
+			
+			<%= link_to 'New article', new_article_path, class:"btn btn-default" %>
+		</div>
+	</div>
+</div>

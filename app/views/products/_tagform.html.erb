@@ -1,0 +1,24 @@
+
+<div id="sidebar-menu" class="col-md-2 hidden-xs hidden-sm">
+	<%= form_tag(filter_products_path, method: 'post', remote: true ) do %>
+	
+		<ul class="main-menu nav nav-stacked affix">
+			<% @categories.each do |category| %>
+				<%= link_to category.name, '#', onclick:"return false" %>
+				<li>
+					<ul class="sub-menu">
+						<% category.tags.each do |tag|%>
+	     					<li id="{#tag.name}">
+	     						<!-- onclick="return false" prevent a tag refreshing function. -->
+								<%#= link_to tag.name, '#', onclick:"return false" %>
+								<%= check_box_tag(:tag.name) %>
+							</li>   					
+						<% end %>
+					</ul>
+				</li>
+			<% end %>
+		</ul>
+		
+	 	<%= submit_tag("Find") %>
+	<% end %>
+</div>

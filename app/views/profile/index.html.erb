@@ -1,0 +1,89 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+						
+			<h1>Profile#index</h1>
+			<p>Find me in app/views/profile/index.html.erb</p>
+			
+			<%= image_tag current_user.icon_name, size: "95", alt: current_user.icon_name %>
+			<%= label_tag current_user.name %>
+
+			<h2>Your Articles<span><%= @articles.count %></span></h2>
+			<% @articles.each do |article| %>
+		        <div class="post-preview">
+		        	
+		        	<%= link_to article_path(article) do %>
+		                <h2 class="post-title">
+		                    <%= article.title %>
+		                </h2>
+		            <% end %>
+		            
+		            <p class="post-meta">Posted by <%= article.user.name%> Email: <a href="#"><%= article.user.email %></a> <%= article.created_at %></p>
+		            
+		        </div>
+		        <%= link_to 'Edit', edit_article_path(article)%>
+		        <%= link_to 'Destroy', article_path(article),
+				              method: :delete,
+				              data: { confirm: 'Are you sure?' } %>
+		        <hr />
+			<% end %>
+			
+			<h2>Your Comments<span><%= @comments.count%></span></h2>
+			<% @comments.each do |comment| %>
+				<div class="container">
+					<div class="row">
+				    	<h3><%= comment.commenter %></h3>
+			    		<span><%= comment.body %></span>
+						<p class="post-meta">
+							Posted by <%= comment.user.name %> 
+							Email: <a href="#"><%= comment.user.email %></a>
+							Created_at:<%= comment.created_at %>
+							Updated_at<%= comment.updated_at %>
+						</p>
+					</div>
+					<div class="row">
+						<!-- <%#= link_to 'Edit',  edit_user_comment_path(comment.user, comment) %> -->
+						<!-- <%#= render partial: 'comments/edit', locals: {comment: comment}%> -->
+						
+				   		 <!-- Modal -->
+				  		<div class="modal fade" id="myModal<%= comment.id%>" role="dialog">
+					    	<div class="modal-dialog">
+					    
+						      <!-- Modal content-->
+						      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">Modal Header</h4>
+					        </div>
+					        <div class="modal-body">
+					          <p>Some text in the modal.</p>
+					          <%= render partial: 'comments/edit', locals: {comment: comment}%> 
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        </div>
+					      </div>
+					      
+					    </div>
+					  	</div>
+					  	<!-- Trigger the modal with a button -->
+	  					<button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal<%= comment.id%>">Edit</button>
+	  					
+						<%= link_to 'Destroy Comment', comment,
+			               method: :delete,
+			               data: { confirm: 'Are you sure?' }, class:"btn btn-sm btn-danger" %>	  
+			                 
+					</div>
+
+				</div>
+				<hr />
+			<% end %>
+			
+			<%= link_to 'New article', new_article_path, class:"btn btn-default" %>
+			<%= link_to "Edit Profile", edit_user_registration_path, class:"btn btn-default" %>
+			<%= link_to "Sign out", destroy_user_session_path(current_user), :method => :delete, class:"btn btn-default" %>
+		</div>
+	</div>
+</div>
+

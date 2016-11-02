@@ -1,0 +1,19 @@
+<div class="comments">
+	<% comments.each do |comment| %>
+		<h5> <%= comment.commenter %> </h5>
+		<p>
+			<%= comment.body %>
+		</p>
+		<% if ! comment.replies.empty? %>
+		<div style="margin-left: 15px; font-size: 12px;">
+			<span>Show <%= comment.replies.size %> replies	</span>
+		  	<a href="#" class="expand-btn" onclick="return false" data-target="">
+		  		<span class="fa fa-chevron-down"></span>
+	  		</a>
+		</div>
+	  	<% end %>
+		<div id="replies" class="replies collapse" style="padding-left: 15px;">
+			<%= render partial: 'comments/index', locals: {comments: comment.replies, id: id} %>
+		</div>
+	<% end %>
+</div>
